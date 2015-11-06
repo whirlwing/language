@@ -7,11 +7,26 @@
 <link rel=stylesheet href="{% static 'main/css/main.css' %}">
 </head>
 <body>
+{% if noInit %}
+<h1>系統並未初始化,目前資料如下:</h1>
+{% else %}
+<h1>輸入資料如下:</h1>
+{% endif %}
+<p><b>使用者:</b></p>
+<ul>
+{% for user in users %}
+<li>帳號:{{user.username}}</li>
+<li>名稱:{{user.first_name}}</li>
+<li>電郵:{{user.email}}</li>
+<li>是員工:{{user.is_staff}}</li>
+<li>是管理者:{{user.is_superuser}}</li>
+{% endfor %}
+</ul>
 <h1>輸入資料如下:</h1>
 <p><b> 程式類別:</b></p>
 <ul>
 {% for category in categories %}
-<li>{{category.name}}</li>
+<li>{{category.name}}(瀏覽:{{category.views}}, 讚:{{category.likes}})</li>
 {% endfor %}
 </ul>
 <p><b>頁面:</b></p>
